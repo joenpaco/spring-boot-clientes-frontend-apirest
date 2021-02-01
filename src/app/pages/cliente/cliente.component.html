@@ -1,0 +1,29 @@
+<app-header></app-header>
+<div class="container">
+    <h1 th:text="${titulo}"
+        class="text-primary border border-success border-top-0 border-left-0 border-right-0"></h1>
+    <p>
+        <a *ngIf="isAdministrador()" class="btn btn-success btn-xs" [routerLink]="['/form']">Crear
+            Cliente</a>
+    </p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>nº</th>
+                <th>nombre</th>
+                <th>apellido</th>
+                <th *ngIf="isAdministrador()">editar</th>
+                <th *ngIf="isAdministrador()">eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cliente of clientes, let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{cliente.nombre}}</td>
+                <td>{{cliente.apellido}}</td>
+                <td *ngIf="isAdministrador()" (click)="onEditar(cliente.id)"><a class="btn btn-primary btn-xs">editar</a></td>
+                <td *ngIf="isAdministrador()" (click)="onEliminar(cliente.id, i)"><a class="btn btn-danger btn-xs">eliminar</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

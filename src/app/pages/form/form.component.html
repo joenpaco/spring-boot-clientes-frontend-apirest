@@ -1,0 +1,38 @@
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-t-50 p-b-90">
+            <h1 class="text-primary border border-success border-top-0 border-left-0 border-right-0"></h1>
+            <form (ngSubmit)="onAddCliente(form)" #form='ngForm' method="post">
+                <span class="login100-form-title p-b-51">
+                    {{title}}
+                </span>
+                <table>
+                    <tr>
+                        <span *ngIf="form.submitted && form.controls['nombre'].errors" class="text-danger">El nombre es obligatorio</span>
+                        <td>Nombre</td>
+                        <td><input type="text" class="form-control" 
+                                   name="nombre"
+                                   placeholder="Nombre"
+                                   [(ngModel)]="cliente.nombre"
+                                   required
+                                   minlength="2"/></td>
+                    </tr>
+                    <tr>
+                        <span *ngIf="form.submitted && form.controls['apellido'].errors" class="text-danger">El apellido es obligatorio</span>
+                        <td>Apellido</td>
+                        <td><input type="text" class="form-control"
+                                   name="apellido"
+                                   placeholder="Apellido"
+                                   [(ngModel)]="cliente.apellido"
+                                   required
+                                   minlength="2"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Crear Cliente" class="btn btn-primary" /></td>
+                    </tr>
+                </table>
+                <input type="hidden" [(ngModel)]="cliente.id" name="id"/>
+            </form>
+        </div>
+    </div>
+</div>
